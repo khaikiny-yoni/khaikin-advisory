@@ -4,6 +4,7 @@ import { ArrowLeft, Briefcase, Home as HomeIcon, Phone, Users } from 'lucide-rea
 import { ROUTE_PATHS, COMPANY_INFO } from '@/lib/index';
 import { IMG, advisorInfo, processSteps, services, testimonials } from '@/data/index';
 import { CountUp, Reveal, SectionHead } from '@/components/Reveal';
+import { PrivateMandate } from '@/components/PrivateMandate';
 import { SystemsShowcase } from '@/components/SystemsShowcase';
 import { ToolsLab } from '@/components/tools/ToolsLab';
 
@@ -182,7 +183,12 @@ export default function Home() {
           <SectionHead eyebrow="מי עומד מאחורי" title={advisorInfo.name} />
           <p className="mt-2 font-display text-xl text-teal">{advisorInfo.title} · {advisorInfo.experience}</p>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{advisorInfo.philosophy}</p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+            {advisorInfo.credentials.map((c) => (
+              <li key={c.k} className="rounded-xl border border-gold/40 bg-gold/5 px-4 py-3 text-sm"><span className="font-bold text-teal">{c.k}: </span><span className="text-navy">{c.v}</span></li>
+            ))}
+          </ul>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {advisorInfo.timeline.map((t) => (
               <li key={t.year} className="rounded-2xl border border-border bg-card p-5">
                 <p className="num font-display text-2xl font-black text-gold">{t.year}</p>
@@ -193,6 +199,8 @@ export default function Home() {
           <Link to={ROUTE_PATHS.ABOUT} className="mt-8 inline-flex items-center gap-2 font-bold text-teal hover:text-navy">עוד עליי <ArrowLeft className="h-4 w-4" /></Link>
         </Reveal>
       </section>
+
+      <PrivateMandate />
 
       {/* TESTIMONIALS */}
       <section className="bg-deep py-24 text-ivory md:py-28">

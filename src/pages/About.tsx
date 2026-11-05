@@ -3,6 +3,7 @@ import { ROUTE_PATHS } from '@/lib/index';
 import { IMG, advisorInfo } from '@/data/index';
 import { CtaBand, PageHero } from '@/components/PageHero';
 import { Reveal, SectionHead } from '@/components/Reveal';
+import { PrivateMandate } from '@/components/PrivateMandate';
 
 const values = [
   { t: 'מספרים לפני המלצות', d: 'כל ייעוץ מתחיל בניתוח הנתונים האמיתיים: דוחות, תנועות ומשכנתא.' },
@@ -27,6 +28,14 @@ export default function About() {
             <SectionHead eyebrow="הסיפור" title="מהבנק אל הצד של הלקוח" />
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{advisorInfo.philosophy}</p>
           </Reveal>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            {advisorInfo.credentials.map((c) => (
+              <div key={c.k} className="rounded-2xl border border-gold/40 bg-gold/5 p-4">
+                <p className="text-xs font-bold text-teal">{c.k}</p>
+                <p className="mt-1 font-semibold text-navy">{c.v}</p>
+              </div>
+            ))}
+          </div>
           <ol className="mt-10 space-y-4 border-r-2 border-dashed border-navy/20 pr-6">
             {advisorInfo.timeline.map((t) => (
               <Reveal key={t.year}>
@@ -52,6 +61,7 @@ export default function About() {
         </div>
       </section>
 
+      <PrivateMandate />
       <CtaBand title="נשמח להכיר" topic="שיחת היכרות" />
     </div>
   );
