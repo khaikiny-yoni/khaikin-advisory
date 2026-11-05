@@ -3,8 +3,12 @@ export const ROUTE_PATHS = {
   ABOUT: '/about',
   SERVICES: '/services',
   MORTGAGE: '/mortgage',
-  FAMILY_FINANCE: '/family-finance',
   CREDIT: '/credit',
+  REVERSE_MORTGAGE: '/reverse-mortgage',
+  FAMILY_FINANCE: '/family-finance',
+  BUSINESS: '/business',
+  SYSTEMS: '/systems',
+  TOOLS: '/tools',
   TESTIMONIALS: '/testimonials',
   CONTACT: '/contact',
 } as const;
@@ -23,7 +27,6 @@ export interface Testimonial {
   name: string;
   role: string;
   content: string;
-  image: string;
   rating: number;
 }
 
@@ -34,7 +37,8 @@ export const COMPANY_INFO = {
     name: 'יהונתן חייקין',
     title: 'יועץ פיננסי',
     experience: 'ניסיון מ-2004',
-    education: 'מסלול מקצועי: 2004 - ייעוץ משכנתאות | 7 שנים בבנק מוביל | 2011 - ביטוחי משכנתאות | 2022 - ייעוץ כלכלת משפחה',
+    education:
+      'מסלול מקצועי: 2004 - ייעוץ משכנתאות | 7 שנים בבנק מוביל | 2011 - ביטוחי משכנתאות | 2022 - ייעוץ כלכלת משפחה',
   },
   contact: {
     phone: '054-7295318',

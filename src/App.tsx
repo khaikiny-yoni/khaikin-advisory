@@ -12,7 +12,9 @@ import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Mortgage from "@/pages/Mortgage";
 import FamilyFinance from "@/pages/FamilyFinance";
-import Credit from "@/pages/Credit";
+import Business from "@/pages/Business";
+import Systems from "@/pages/Systems";
+import Tools from "@/pages/Tools";
 import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
 
@@ -31,10 +33,15 @@ const App = () => (
               <Route path={ROUTE_PATHS.ABOUT} element={<About />} />
               <Route path={ROUTE_PATHS.SERVICES} element={<Services />} />
               <Route path={ROUTE_PATHS.MORTGAGE} element={<Mortgage />} />
+              <Route path={ROUTE_PATHS.CREDIT} element={<Mortgage />} />
+              <Route path={ROUTE_PATHS.REVERSE_MORTGAGE} element={<Mortgage />} />
               <Route path={ROUTE_PATHS.FAMILY_FINANCE} element={<FamilyFinance />} />
-              <Route path={ROUTE_PATHS.CREDIT} element={<Credit />} />
+              <Route path={ROUTE_PATHS.BUSINESS} element={<Business />} />
+              <Route path={ROUTE_PATHS.SYSTEMS} element={<Systems />} />
+              <Route path={ROUTE_PATHS.TOOLS} element={<Tools />} />
               <Route path={ROUTE_PATHS.TESTIMONIALS} element={<Testimonials />} />
               <Route path={ROUTE_PATHS.CONTACT} element={<Contact />} />
+              <Route path="*" element={<Home />} />
             </Routes>
           </Layout>
           <WhatsAppButton />
