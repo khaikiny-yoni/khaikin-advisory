@@ -160,6 +160,7 @@ export function Layout({ children }: LayoutProps) {
                 <li><Link to={ROUTE_PATHS.ABOUT} className="transition hover:text-white">אודות</Link></li>
                 <li><Link to={ROUTE_PATHS.TESTIMONIALS} className="transition hover:text-white">המלצות</Link></li>
                 <li><Link to={ROUTE_PATHS.CONTACT} className="transition hover:text-white">צור קשר</Link></li>
+                <li><a href="/privacy-policy.html" target="_blank" rel="noopener noreferrer" className="transition hover:text-white">מדיניות פרטיות</a></li>
               </ul>
             </div>
 
