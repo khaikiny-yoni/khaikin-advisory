@@ -1,9 +1,9 @@
 import { Service, Testimonial } from '@/lib/index';
 
 export const IMG = {
-  HERO: '/img/yoni-hero.jpg',
-  BW: '/img/yoni-bw.jpg',
-  BRIDGE: '/img/yoni-bridge.jpg',
+  HERO: '/img/yoni-prague.jpg',
+  BW: '/img/yoni-autumn.jpg',
+  BRIDGE: '/img/yoni-autumn.jpg',
   LOGO: '/img/logo.png',
 };
 

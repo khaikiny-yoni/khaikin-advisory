@@ -176,7 +176,7 @@ export default function Home() {
         <Reveal>
           <div className="relative mx-auto max-w-sm">
             <div className="absolute -bottom-4 -left-4 h-full w-full rounded-[2rem] border-2 border-gold/60" />
-            <img src={IMG.BW} alt={advisorInfo.name} loading="lazy" className="relative aspect-[3/4] w-full rounded-[2rem] object-cover object-top grayscale-[20%]" />
+            <img src={IMG.BW} alt={advisorInfo.name} loading="lazy" className="relative aspect-[3/4] w-full rounded-[2rem] object-cover object-top" />
           </div>
         </Reveal>
         <Reveal delay={0.1}>
