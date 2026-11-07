@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, Check, PiggyBank, Wallet, Briefcase } from 'lucide-react';
 import { ROUTE_PATHS } from '@/lib/index';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { systems, type SystemInfo } from '@/data/index';
 
 const ICONS = { budget: Wallet, savings: PiggyBank, business: Briefcase } as const;
@@ -118,13 +119,77 @@ function BusinessPreview() {
   );
 }
 
+
+/* Real screenshots of the system (demo data) in a browser-style frame */
+function ScreenGallery({ s }: { s: SystemInfo }) {
+  const shots = s.shots ?? [];
+  const [i, setI] = useState(0);
+  const [open, setOpen] = useState(false);
+  const cur = shots[i];
+  return (
+    <div className="relative">
+      <div role="tablist" aria-label="מסכי המערכת" className="mb-4 flex flex-wrap gap-2">
+        {shots.map((x, idx) => (
+          <button
+            key={x.src}
+            role="tab"
+            aria-selected={idx === i}
+            onClick={() => setI(idx)}
+            className={`rounded-full border px-4 py-1.5 text-sm font-semibold transition ${
+              idx === i ? 'border-gold bg-gold text-deep' : 'border-white/20 text-ivory/80 hover:border-gold hover:text-gold'
+            }`}
+          >
+            {x.label}
+          </button>
+        ))}
+      </div>
+      <div className="relative">
+        <div className="overflow-hidden rounded-2xl border border-white/15 bg-white shadow-2xl shadow-black/30">
+          <div className="flex items-center gap-1.5 border-b border-black/5 bg-[#eef2f8] px-3 py-2" aria-hidden>
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+          </div>
+          <AnimatePresence mode="wait">
+            <motion.button
+              key={cur.src}
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-label={`הגדלת התמונה: ${cur.label}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="block w-full cursor-zoom-in"
+            >
+              <img src={cur.src} alt={cur.alt} loading="lazy" className="block w-full" />
+            </motion.button>
+          </AnimatePresence>
+        </div>
+        {s.mobileShot && (
+          <div className="absolute -bottom-6 -left-3 hidden w-[26%] overflow-hidden rounded-[1.4rem] border-4 border-deep bg-white shadow-2xl shadow-black/40 sm:block md:-left-6">
+            <img src={s.mobileShot} alt="תצוגת המערכת בטלפון נייד" loading="lazy" className="block w-full" />
+          </div>
+        )}
+      </div>
+      <p className="mt-8 text-xs text-ivory/50">צילומי מסך מהמערכת עם נתוני הדגמה. אין בהם מידע על לקוחות.</p>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-[min(1200px,95vw)] border-0 bg-transparent p-0 shadow-none">
+          <DialogTitle className="sr-only">{cur.label}</DialogTitle>
+          <img src={cur.src} alt={cur.alt} className="w-full rounded-xl" />
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
 const PREVIEWS = { budget: BudgetPreview, savings: SavingsPreview, business: BusinessPreview } as const;
 
 export function SystemDetail({ s }: { s: SystemInfo }) {
   const Icon = ICONS[s.id];
   const Preview = PREVIEWS[s.id];
   return (
-    <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_1fr]">
+    <div className={`grid items-stretch gap-6 ${s.shots ? 'lg:grid-cols-[0.85fr_1.15fr]' : 'lg:grid-cols-[1.1fr_1fr]'}`}>
       <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.04] p-7 md:p-9">
         <div>
           <div className="mb-5 flex items-center gap-3 text-gold">
@@ -155,7 +220,7 @@ export function SystemDetail({ s }: { s: SystemInfo }) {
         </div>
       </div>
       <div className="grain relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#0d3566] to-deep p-7 text-ivory md:p-9">
-        <Preview />
+        {s.shots ? <ScreenGallery s={s} /> : <Preview />}
       </div>
     </div>
   );
