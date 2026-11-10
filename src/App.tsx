@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MotionConfig } from "framer-motion";
 import { ROUTE_PATHS } from "@/lib/index";
 import { Layout } from "@/components/Layout";
@@ -17,6 +17,8 @@ import Systems from "@/pages/Systems";
 import Tools from "@/pages/Tools";
 import Testimonials from "@/pages/Testimonials";
 import Contact from "@/pages/Contact";
+import NotFound from "@/pages/not-found/Index";
+import { Seo } from "@/components/Seo";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +28,8 @@ const App = () => (
       <MotionConfig reducedMotion="user">
         <Toaster />
         <Sonner />
-        <HashRouter>
+        <BrowserRouter>
+          <Seo />
           <Layout>
             <Routes>
               <Route path={ROUTE_PATHS.HOME} element={<Home />} />
@@ -41,11 +44,11 @@ const App = () => (
               <Route path={ROUTE_PATHS.TOOLS} element={<Tools />} />
               <Route path={ROUTE_PATHS.TESTIMONIALS} element={<Testimonials />} />
               <Route path={ROUTE_PATHS.CONTACT} element={<Contact />} />
-              <Route path="*" element={<Home />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>
           <WhatsAppButton />
-        </HashRouter>
+        </BrowserRouter>
       </MotionConfig>
     </TooltipProvider>
   </QueryClientProvider>

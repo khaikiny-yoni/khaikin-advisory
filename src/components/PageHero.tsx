@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export function PageHero({
   eyebrow,
@@ -42,9 +43,9 @@ export function CtaBand({ title, topic, text }: { title: string; topic: string; 
             <h2 className="font-display text-3xl font-black text-balance md:text-4xl">{title}</h2>
             {text && <p className="mt-3 max-w-xl text-ivory/80">{text}</p>}
           </div>
-          <a href={`#/contact?topic=${encodeURIComponent(topic)}`} className="shrink-0 rounded-full bg-gold px-8 py-4 text-lg font-bold text-deep transition hover:bg-white">
+          <Link to={`/contact?topic=${encodeURIComponent(topic)}`} className="shrink-0 rounded-full bg-gold px-8 py-4 text-lg font-bold text-deep transition hover:bg-white">
             קביעת שיחה
-          </a>
+          </Link>
         </div>
       </div>
     </section>
