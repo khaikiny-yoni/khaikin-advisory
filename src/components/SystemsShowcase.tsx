@@ -49,9 +49,9 @@ function BudgetPreview() {
 
 function SavingsPreview() {
   const goals = [
-    { l: 'קרן חירום', p: 80, c: '#3bb0c4' },
-    { l: 'הון עצמי לדירה', p: 46, c: '#c9a961' },
-    { l: 'לימודים', p: 28, c: '#17697a' },
+    { l: 'טיולים וחופשות', p: 65, c: '#3bb0c4' },
+    { l: 'בריאות ורווחה', p: 63, c: '#c9a961' },
+    { l: 'רכב ותחזוקה', p: 35, c: '#17697a' },
   ];
   return (
     <div>
@@ -81,7 +81,7 @@ function SavingsPreview() {
           );
         })}
       </div>
-      <p className="mt-5 rounded-xl bg-white/5 p-3 text-xs text-ivory/70">הפקדה חודשית קבועה לכל יעד, וצפי להגעה אליו</p>
+      <p className="mt-5 rounded-xl bg-white/5 p-3 text-xs text-ivory/70">הפקדה חודשית שמחולקת בין הסעיפים, ואחוז התקדמות לכל יעד</p>
     </div>
   );
 }
